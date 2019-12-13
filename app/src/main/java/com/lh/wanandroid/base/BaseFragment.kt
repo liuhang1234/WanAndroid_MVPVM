@@ -11,7 +11,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment
 
 abstract class BaseFragment<VB : ViewDataBinding> : RxFragment() {
 
-
+    lateinit var databinding: VB
 
     protected var mActivity: BaseActivity? = null
 
@@ -23,17 +23,26 @@ abstract class BaseFragment<VB : ViewDataBinding> : RxFragment() {
     }
 
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        databinding = DataBindingUtil.inflate<VB>(inflater, getLayoutId(), container, false)
 
+        return databinding.root
+    }
 
     //这个时候 view 才初始化完成 可以直接通过view的id 寻找控件
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view,savedInstanceState)
+        initView(view, savedInstanceState)
     }
 
 
+    abstract fun getLayoutId(): Int
 
-    abstract fun initView(view : View, savedInstanceState: Bundle?)
+    abstract fun initView(view: View, savedInstanceState: Bundle?)
 
 
 }

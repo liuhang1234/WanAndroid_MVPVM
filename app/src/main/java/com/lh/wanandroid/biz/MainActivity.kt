@@ -5,9 +5,10 @@ import com.lh.wanandroid.R
 import com.lh.wanandroid.base.BaseActivity
 import com.lh.wanandroid.base.BaseFragment
 import com.lh.wanandroid.biz.main.MainFragment
+import com.lh.wanandroid.databinding.FragmentMainBinding
 
 class MainActivity : BaseActivity() {
-    override fun getFragment(): BaseFragment? {
+    override fun getFragment(): BaseFragment<FragmentMainBinding>? {
         return MainFragment.newInstance()
     }
 

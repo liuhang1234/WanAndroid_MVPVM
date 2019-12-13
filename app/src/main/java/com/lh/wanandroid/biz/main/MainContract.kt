@@ -10,5 +10,7 @@ interface MainContract {
     }
     interface Presenter:IPresenter{
         fun getHomeList(loadMore:Boolean)
+        fun clickChange()
+
     }
 }

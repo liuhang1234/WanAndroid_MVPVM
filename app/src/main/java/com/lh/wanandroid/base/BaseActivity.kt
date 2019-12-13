@@ -25,7 +25,7 @@ abstract class BaseActivity : RxAppCompatActivity() {
         init(savedInstanceState)
     }
 
-    abstract fun getFragment(): BaseFragment?
+    abstract fun getFragment(): BaseFragment<*>?
     abstract fun setLayoutId(): Int
     abstract fun getFragmentContentId(): Int
     abstract fun init(savedInstanceState: Bundle?): Unit

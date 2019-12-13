@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.lh.wanandroid.BR
 import com.lh.wanandroid.R
 import com.lh.wanandroid.adapter.BaseBindViewHolder
 import com.lh.wanandroid.adapter.BaseBindingAdapter
@@ -23,9 +22,9 @@ class MainDataAdapter<VB :ViewDataBinding>(mContext: Context) : BaseBindingAdapt
         return BaseBindViewHolder(binding)    }
 
     override fun onBindVH(holder: BaseBindViewHolder, position: Int) {
-        val binding = holder.binding
-        binding.setVariable(BR.data, mDataList?.get(position))//绑定数据
-        binding.executePendingBindings()//防止闪烁
+//        val binding = holder.binding
+//        binding.setVariable(BR.data, mDataList?.get(position))//绑定数据
+//        binding.executePendingBindings()//防止闪烁
     }
 
 }
