@@ -29,7 +29,7 @@ abstract class BaseFragment<VB : ViewDataBinding> : RxFragment() {
         savedInstanceState: Bundle?
     ): View? {
         databinding = DataBindingUtil.inflate<VB>(inflater, getLayoutId(), container, false)
-
+        databinding.lifecycleOwner = this
         return databinding.root
     }
 
