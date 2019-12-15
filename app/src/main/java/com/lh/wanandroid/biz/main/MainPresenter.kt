@@ -27,9 +27,9 @@ class MainPresenter(mContext: BaseFragment<*>, mView: MainContract.View) :
     override fun getHomeList(loadMore: Boolean) {
         if (dataBinding is FragmentMainBinding) {
             (dataBinding as FragmentMainBinding).data =mMainModel
-            val text = TextModel("随机数字：")
-            mMainModel.articleDetail.value=text
         }
+        mMainModel.getList(loadMore)
+
     }
 
     /**

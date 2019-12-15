@@ -25,7 +25,7 @@ class MainViewModel:BaseViewModel() {
             .subscribe(object : HttpResponseSubscriber<HomeListData>() {
                 override fun onSuccess(result: HomeListData) {
                     Log.d("liuhang onSuccess",result.toString())
-                    val text = TextModel("随机数字：")
+                    val text = TextModel(result.toString())
 //                    articleDetail.value=text
                     articleDetail.value=text
 
