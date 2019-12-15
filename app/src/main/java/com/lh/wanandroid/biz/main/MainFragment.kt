@@ -39,7 +39,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() ,MainContract.View{
         databinding.rv.layoutManager = LinearLayoutManager(mActivity)
         var mainDataAdapter = MainDataAdapter<ItemHomeListBinding>(mActivity!!.baseContext)
         databinding.rv.adapter = mainDataAdapter
-        mPresenter.adapter = mainDataAdapter;
         mPresenter.getHomeList(true)
 
     }
