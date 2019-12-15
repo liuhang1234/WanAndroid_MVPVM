@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import com.lh.wanandroid.adapter.MainDataAdapter
 import com.lh.wanandroid.base.BaseViewModel
+import com.lh.wanandroid.data.Datas
 import com.lh.wanandroid.data.HomeListData
 import com.lh.wanandroid.http.HttpResponseSubscriber
 import com.lh.wanandroid.http.HttpThrowable
@@ -15,7 +17,8 @@ import java.util.*
 class MainViewModel:BaseViewModel() {
 
     val articleDetail by lazy { MutableLiveData<TextModel>()  }
-
+    val datas by lazy { MutableLiveData<List<Datas>>() }
+    var mAdapter : MainDataAdapter? = null
 
 
     fun getList(loadMore: Boolean) {
@@ -24,7 +27,8 @@ class MainViewModel:BaseViewModel() {
             .compose(TransformUtils.defaultSchedulers())
             .subscribe(object : HttpResponseSubscriber<HomeListData>() {
                 override fun onSuccess(result: HomeListData) {
-                    Log.d("liuhang onSuccess",result.toString())
+                    var list = listOf(result.datas)
+                    datas.value=result.datas
                     val text = TextModel(result.toString())
 //                    articleDetail.value=text
                     articleDetail.value=text

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
@@ -27,6 +28,12 @@ android {
         }
     }
 }
+
+kapt {
+    generateStubs = true
+}
+
+
 def lifecycle_version = "2.0.0"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -65,4 +72,6 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
+
+    kapt  "com.android.databinding:compiler:3.5.3"
 }

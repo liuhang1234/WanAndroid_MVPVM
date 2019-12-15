@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lh.wanandroid.base.BaseFragment
 import com.lh.wanandroid.base.BasePresenter
 import com.lh.wanandroid.base.IView
@@ -23,11 +24,29 @@ class MainPresenter(mContext: BaseFragment<*>, mView: MainContract.View) :
     lateinit var dataBinding: ViewDataBinding;
     val mMainModel by lazy { viewModelProvider(MainViewModel::class.java) }
 
-
     override fun getHomeList(loadMore: Boolean) {
         if (dataBinding is FragmentMainBinding) {
             (dataBinding as FragmentMainBinding).data =mMainModel
+
         }
+
+        RetrofitUtils.createService().getHomeList(1)
+            .compose(TransformUtils.defaultSchedulers())
+            .subscribe(object : HttpResponseSubscriber<HomeListData>() {
+                override fun onSuccess(result: HomeListData) {
+                    var list = listOf(result.datas)
+//
+
+                }
+
+                override fun onHttpError(e: HttpThrowable) {
+                    Log.d("liuhang onHttpError",e.toString())
+
+
+                }
+
+            })
+
         mMainModel.getList(loadMore)
 
     }
